@@ -5,7 +5,7 @@ You need a WEMOS D1 R2 (or other ESP8266based board) and a 16-button QYF-TM1638-
 
 Module: https://www.aliexpress.com/item/4001104267700.html
 
-Based on the famous TM1638plus-library by 
+Based on the famous TM1638plus-library by Gavin Lyons https://github.com/gavinlyonsrepo/TM1638plus
 
 For each shutter, two buttons are used. Up and down. If the shutter is in motion, it stops when you press the button again.
 
