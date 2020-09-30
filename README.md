@@ -11,6 +11,12 @@ For each shutter, two buttons are used. Up and down. If the shutter is in motion
 You can send messages to the display via MQTT, (default topic: TM1638/message).
 You can adjust brightness in 8 steps via topic TM1638/brightness
 
+Examples:
+<code>
+mosquitto_pub -d -t TM1638/message -m "MESSAGE"; 
+mosquitto_pub -d -t TM1638/brightness -m 1 (valid from 0-7)
+</code>
+
 For testing purpose, the display shows the pressed button and its send out on the serial port. Feel free to comment it out when its working for you.
 
 Connect:
