@@ -23,7 +23,6 @@ bool jaromerk4 = false;
 bool jaromerk5 = false;
 bool jaromerk6 = false;
 bool jaromerk7 = false;
-bool jaromerk8 = false;
 
 WiFiClient espClient;
 PubSubClient client(espClient);
