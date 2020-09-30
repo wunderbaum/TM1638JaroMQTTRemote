@@ -6,11 +6,11 @@ You need a WEMOS D1 R2 (or other ESP8266based board) and a 16-button TM1638-boar
 For each shutter, two buttons are used. Up and down. If the shutter is in motion, it stops when you press the button again.
 
 Connect:
-
-GND <-> GND
+<pre>
+GND <-> GND 
 D1  <-> STB
 D2  <-> CLK
 D3  <-> DIO
 3.3 <-> VCC
-
+</pre>
 This is a project in development, so feel free to participate!
