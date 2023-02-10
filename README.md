@@ -3,7 +3,7 @@
 Remotecontrol via MQTT for the Jarolift_MQTT-project: https://github.com/madmartin/Jarolift_MQTT
 You need a WEMOS D1 R2 (or other ESP8266based board) and a 16-button QYF-TM1638-board and a few cables:
 
-Module: https://www.aliexpress.com/item/4001104267700.html
+Module: https://www.aliexpress.com/w/wholesale-tm1638.html?catId=0&SearchText=tm1638
 
 Based on the famous TM1638plus-library by Gavin Lyons https://github.com/gavinlyonsrepo/TM1638plus
 
