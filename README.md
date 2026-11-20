@@ -1,36 +1,61 @@
 # TM1638JaroMQTTRemote
 
-Remotecontrol via MQTT for the Jarolift_MQTT-project: https://github.com/madmartin/Jarolift_MQTT
-You need a WEMOS D1 R2 (or other ESP8266based board) and a 16-button QYF-TM1638-board and a few cables:
+Remote control for [Jarolift_MQTT](https://github.com/madmartin/Jarolift_MQTT) using a TM1638 module.
 
-Module: https://www.aliexpress.com/w/wholesale-tm1638.html?catId=0&SearchText=tm1638
+## Supported boards
 
-Based on the famous TM1638plus-library by Gavin Lyons https://github.com/gavinlyonsrepo/TM1638plus
+- **ESP8266:** Wemos D1 mini (existing implementation)
+- **ESP32-C3:** ESP32-C3 SuperMini (new implementation)
 
-For each shutter, two buttons are used. Up and down. If the shutter is in motion, it stops when you press the button again.
-You can send messages to the display via MQTT, (default topic: TM1638/message).
-You can adjust brightness in 8 steps via topic TM1638/brightness
+## ESP32-C3 SuperMini wiring
 
-Examples:
-<code>
-mosquitto_pub -d -t TM1638/message -m "MESSAGE"; 
-mosquitto_pub -d -t TM1638/brightness -m 1 (valid from 0-7)
-</code>
+| TM1638 | ESP32-C3 SuperMini |
+|---|---|
+| GND | GND |
+| VCC | 3.3V |
+| STB | GPIO4 |
+| CLK | GPIO5 |
+| DIO | GPIO6 |
 
-For testing purpose, the display shows the pressed button and its send out on the serial port. Feel free to comment it out when its working for you.
+Use 3.3 V for the TM1638. The ESP32-C3 GPIO pins are 3.3 V only. If your module only operates from 5 V or exposes 5 V DIO levels, use an appropriate logic-level interface.
 
-Connect:
-<pre>
-GND <-> GND 
-D1  <-> STB
-D2  <-> CLK
-D3  <-> DIO
-3.3 <-> VCC
-</pre>
+## Configuration
 
-Edit the wifidata.h according to your local network and compile.
+Copy `src/wifidata.h.example` to `src/wifidata.h` and enter your Wi-Fi and MQTT settings:
 
-TODO:
-Shade function, Housing, powersource etc etc.
+```cpp
+const char* ssid = "YOUR_WIFI_SSID";
+const char* password = "YOUR_WIFI_PASSWORD";
+const char* mqtt_server = "YOUR_MQTT_BROKER";
+```
 
-This is a project in development, so feel free to participate!
+`src/wifidata.h` is ignored by Git.
+
+## PlatformIO builds
+
+```bash
+pio run -e d1_mini
+pio run -e esp32-c3-supermini
+```
+
+To upload:
+
+```bash
+pio run -e esp32-c3-supermini -t upload
+pio device monitor -e esp32-c3-supermini
+```
+
+## MQTT
+
+- Button presses: `TM1638/button`
+- Display text: `TM1638/message`
+- Brightness: `TM1638/brightness` (0–7)
+- Status: `TM1638/pub`
+- Shutter commands: `cmd/jarolift/shutter/<0-7>` with `UP`, `DOWN`, or `STOP`
+
+Example:
+
+```bash
+mosquitto_pub -t TM1638/message -m "HELLO"
+mosquitto_pub -t TM1638/brightness -m 3
+```
