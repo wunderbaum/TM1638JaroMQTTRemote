@@ -1,0 +1,6 @@
+# The Wi-Fi and MQTT values in this file are local credentials.
+# Copy this file to wifidata.h and edit the copied file.
+
+const char* ssid = "YOUR_WIFI_SSID";
+const char* password = "YOUR_WIFI_PASSWORD";
+const char* mqtt_server = "YOUR_MQTT_BROKER";
